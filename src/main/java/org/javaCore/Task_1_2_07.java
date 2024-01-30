@@ -1,6 +1,6 @@
 package org.javaCore;
 
-public class Task_1_2_7 {
+public class Task_1_2_07 {
     public static void main(String[] args) {
         System.out.println(drawIsMonitorsCounter(10, 4));
     }

@@ -1,6 +1,6 @@
 package org.javaCore;
 
-public class Task_1_2_4 {
+public class Task_1_2_04 {
     public static void main(String[] args) {
         byte varByte = 127;
         short varShort = 32767;
