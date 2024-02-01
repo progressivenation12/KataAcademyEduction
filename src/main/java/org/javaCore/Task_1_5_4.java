@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class Task_1_5_4 {
     public static void main(String[] args) {
-        System.out.println(Arrays.toString(getSubArrayBetween(new int[]{1, 3, 5, 6, 9, 11, 24}, 1, 25)));
+        System.out.println(Arrays.toString(getSubArrayBetween(new int[]{1, 3, 5, 6, 9, 11, 24}, 25, 25)));
     }
 
     public static int[] getSubArrayBetween(int[] numbers, int start, int end) {
@@ -16,7 +16,7 @@ public class Task_1_5_4 {
             startPosition = i;
         }
 
-        if (numbers[i] <= end) {
+        if (numbers[i] == end) {
             endPosition = i;
         }
     }
