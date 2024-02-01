@@ -2,7 +2,7 @@ package org.javaCore;
 
 import java.util.Arrays;
 
-public class Task_1_5_4 {
+public class Task_1_5_04 {
     public static void main(String[] args) {
         System.out.println(Arrays.toString(getSubArrayBetween(new int[]{1, 3, 5, 6, 9, 11, 24}, 25, 25)));
     }

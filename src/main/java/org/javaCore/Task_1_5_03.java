@@ -1,6 +1,6 @@
 package org.javaCore;
 
-public class Task_1_5_3 {
+public class Task_1_5_03 {
     public static void main(String[] args) {
         printArray(new int[]{});
     }

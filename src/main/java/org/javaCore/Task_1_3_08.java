@@ -1,6 +1,6 @@
 package org.javaCore;
 
-public class Task_1_3_8 {
+public class Task_1_3_08 {
     public static void main(String[] args) {
         System.out.println(isPowerOfTwo(9));
     }

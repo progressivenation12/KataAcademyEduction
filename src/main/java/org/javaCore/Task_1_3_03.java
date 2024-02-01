@@ -1,6 +1,6 @@
 package org.javaCore;
 
-public class Task_1_3_3 {
+public class Task_1_3_03 {
     public static void main(String[] args) {
         System.out.println(getAgeDiff((byte) 2, (byte) 5));
     }

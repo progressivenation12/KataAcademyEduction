@@ -1,6 +1,6 @@
 package org.javaCore;
 
-public class Task_1_4_9 {
+public class Task_1_4_09 {
     public static void main(String[] args) {
         System.out.println(determineGroup(77));
     }

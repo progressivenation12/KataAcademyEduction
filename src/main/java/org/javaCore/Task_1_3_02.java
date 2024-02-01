@@ -1,6 +1,6 @@
 package org.javaCore;
 
-public class Task_1_3_2 {
+public class Task_1_3_02 {
     public static void main(String[] args) {
         System.out.println(charExpression(10));
     }

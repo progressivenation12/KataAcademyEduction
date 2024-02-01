@@ -2,7 +2,7 @@ package org.javaCore;
 
 import java.math.BigInteger;
 
-public class Task_1_4_7 {
+public class Task_1_4_07 {
     public static void main(String[] args) {
         System.out.println(factorial(100));
     }
