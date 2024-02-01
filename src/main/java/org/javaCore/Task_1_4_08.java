@@ -9,7 +9,7 @@ public class Task_1_4_08 {
 
     public static BigInteger factorial(int value) {
         if (value == 0) {
-            return BigInteger.valueOf(1);
+            return BigInteger.ONE;
         }
         return BigInteger.valueOf(value).multiply(factorial(value - 1));
     }
