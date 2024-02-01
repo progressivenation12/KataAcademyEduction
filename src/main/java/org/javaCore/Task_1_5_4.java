@@ -8,27 +8,30 @@ public class Task_1_5_4 {
     }
 
     public static int[] getSubArrayBetween(int[] numbers, int start, int end) {
-    int startPosition = 0;
-    int endPosition = 0;
+        int startIndex = 0;
+        int endIndex = 0;
 
-    for (int i = 1; i < numbers.length; i++) {
-        if (numbers[i] >= start && numbers[i - 1] < start) {
-            startPosition = i;
+        if (numbers.length == 0 || start > numbers[numbers.length - 1] || end > numbers[numbers.length - 1] || start > end) {
+            return new int[0];
+        } else {
+            for (int i = 1; i < numbers.length; i++) {
+                if (numbers[i - 1] < start && numbers[i] >= start) {
+                    startIndex = i;
+                }
+
+                if (numbers[i] <= end) {
+                    endIndex = i;
+                }
+            }
+
+            int[] newArray = new int[endIndex - startIndex + 1];
+            int subIndex = 0;
+
+            for (int i = startIndex; i <= endIndex; i++) {
+                newArray[subIndex++] = numbers[i];
+            }
+
+            return newArray;
         }
-
-        if (numbers[i] == end) {
-            endPosition = i;
-        }
-    }
-
-    int[] newArray = new int[endPosition - startPosition + 1];
-
-    int subIndex = 0;
-
-    for (int i = startPosition; i <= endPosition; i++) {
-        newArray[subIndex++] = numbers[i];
-    }
-
-    return newArray;
     }
 }
