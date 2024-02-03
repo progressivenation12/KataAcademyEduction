@@ -22,7 +22,7 @@ public class Task_1_6_11 {
         builderResult.append(role).append(':').append("\n");
 
         for (int i = 0; i < textLines.length; i++) {
-            if (textLines[i].startsWith(role + ":")) {
+            if (textLines[i].startsWith(role) && textLines[i].indexOf(role) == 0) {
                 builderResult.append(i + 1)
                         .append(") ")
                         .append(textLines[i].replaceFirst(role + ": ", ""))
