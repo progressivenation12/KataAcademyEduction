@@ -50,7 +50,6 @@ public class Task_2_5_07 {
         TextAnalyzer[][] textAnalyzers = {textAnalyzers1, textAnalyzers2, textAnalyzers3,
                 textAnalyzers4, textAnalyzers5, textAnalyzers6};
 
-        Task_2_5_07 testObject = new Task_2_5_07();
         int numberOfAnalyzer; // номер анализатора, указанный в идентификаторе textAnalyzers{№}
         int numberOfTest = 0; // номер теста, который соответствует индексу тестовых комментариев
         for (String test : tests) {
@@ -59,98 +58,98 @@ public class Task_2_5_07 {
             System.out.println(test);
             for (TextAnalyzer[] analyzers : textAnalyzers) {
                 System.out.print(numberOfAnalyzer + ": ");
-                System.out.println(testObject.checkLabels(analyzers, test));
+                System.out.println(checkLabels(analyzers, test));
                 numberOfAnalyzer++;
             }
             numberOfTest++;
         }
     }
 
-public static Label checkLabels(TextAnalyzer[] analyzers, String text) {
-    for (TextAnalyzer analyzer : analyzers) {
-        if (!analyzer.processText(text).equals(Label.OK)) {
-            return analyzer.processText(text);
-        }
-    }
-    return Label.OK;
-}
-
-public static class SpamAnalyzer extends KeywordAnalyzer {
-    private final String[] keywords;
-
-    public SpamAnalyzer(String[] keywords) {
-        this.keywords = keywords.clone();
-    }
-
-    @Override
-    protected String[] getKeywords() {
-        return keywords.clone();
-    }
-
-    @Override
-    protected Label getLabel() {
-        return Label.SPAM;
-    }
-
-    @Override
-    public Label processText(String text) {
-        return super.processText(text);
-    }
-}
-
-public static class NegativeTextAnalyzer extends KeywordAnalyzer {
-    private final String[] negative = new String[]{":(", "=(", ":|"};
-
-    public NegativeTextAnalyzer() {
-    }
-
-    @Override
-    protected String[] getKeywords() {
-        return negative;
-    }
-
-    @Override
-    protected Label getLabel() {
-        return Label.NEGATIVE_TEXT;
-    }
-
-    @Override
-    public Label processText(String text) {
-        return super.processText(text);
-    }
-}
-
-public static class TooLongTextAnalyzer implements TextAnalyzer {
-    private final int maxLength;
-
-    public TooLongTextAnalyzer(int maxLength) {
-        this.maxLength = maxLength;
-    }
-
-    @Override
-    public Label processText(String text) {
-        if (text.length() > maxLength) {
-            return Label.TOO_LONG;
-        }
-        return Label.OK;
-    }
-}
-
-public static abstract class KeywordAnalyzer implements TextAnalyzer {
-    protected abstract String[] getKeywords();
-
-    protected abstract Label getLabel();
-
-    @Override
-    public Label processText(String text) {
-        for (String key : getKeywords()) {
-            if (text.contains(key)) {
-                return getLabel();
+    public static Label checkLabels(TextAnalyzer[] analyzers, String text) {
+        for (TextAnalyzer analyzer : analyzers) {
+            if (!analyzer.processText(text).equals(Label.OK)) {
+                return analyzer.processText(text);
             }
         }
         return Label.OK;
     }
-}
+
+    public static class SpamAnalyzer extends KeywordAnalyzer {
+        private final String[] keywords;
+
+        public SpamAnalyzer(String[] keywords) {
+            this.keywords = keywords.clone();
+        }
+
+        @Override
+        protected String[] getKeywords() {
+            return keywords.clone();
+        }
+
+        @Override
+        protected Label getLabel() {
+            return Label.SPAM;
+        }
+
+        @Override
+        public Label processText(String text) {
+            return super.processText(text);
+        }
+    }
+
+    public static class NegativeTextAnalyzer extends KeywordAnalyzer {
+        private final String[] negative = new String[]{":(", "=(", ":|"};
+
+        public NegativeTextAnalyzer() {
+        }
+
+        @Override
+        protected String[] getKeywords() {
+            return negative;
+        }
+
+        @Override
+        protected Label getLabel() {
+            return Label.NEGATIVE_TEXT;
+        }
+
+        @Override
+        public Label processText(String text) {
+            return super.processText(text);
+        }
+    }
+
+    public static class TooLongTextAnalyzer implements TextAnalyzer {
+        private final int maxLength;
+
+        public TooLongTextAnalyzer(int maxLength) {
+            this.maxLength = maxLength;
+        }
+
+        @Override
+        public Label processText(String text) {
+            if (text.length() > maxLength) {
+                return Label.TOO_LONG;
+            }
+            return Label.OK;
+        }
+    }
+
+    public static abstract class KeywordAnalyzer implements TextAnalyzer {
+        protected abstract String[] getKeywords();
+
+        protected abstract Label getLabel();
+
+        @Override
+        public Label processText(String text) {
+            for (String key : getKeywords()) {
+                if (text.contains(key)) {
+                    return getLabel();
+                }
+            }
+            return Label.OK;
+        }
+    }
 }
 
 
