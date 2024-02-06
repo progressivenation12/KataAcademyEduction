@@ -3,7 +3,6 @@ package org.javaCore;
 
 public class Task_2_5_07 {
     public static void main(String[] args) {
-        // инициализация анализаторов для проверки в порядке данного набора анализаторов
         String[] spamKeywords = {"spam", "bad"};
         int commentMaxLength = 40;
         TextAnalyzer[] textAnalyzers1 = {
