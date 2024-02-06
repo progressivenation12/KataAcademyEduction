@@ -14,11 +14,6 @@ public class Task_2_2_07 {
     }
 
     public static int getMinFromTwo(int a, int b) {
-        if (a > b) {
-            return b;
-        } else {
-            return a;
-        }
+        return Math.min(a, b);
     }
 }
-
