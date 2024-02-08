@@ -1,6 +1,21 @@
 package org.javaCore;
 
 public class Task_3_2_06 {
+    public static void main(String[] args) {
+        MyRobotConnectionManager myRobotConnectionManager = new MyRobotConnectionManager();
+        moveRobot(myRobotConnectionManager, 5, -6);
+    }
+
+    // Класс создан для тестирования
+    public static class MyRobotConnectionManager implements RobotConnectionManager {
+        @Override
+        public RobotConnection getConnection() {
+            System.out.println("Creating new connection");
+
+            return new Robot(0, 0, Direction.UP);
+        }
+    }
+
     public static class Robot implements RobotConnection {
         private int x;
         private int y;
@@ -158,10 +173,6 @@ public class Task_3_2_06 {
     public static class RobotConnectionException extends RuntimeException {
         public RobotConnectionException(String message) {
             super(message);
-        }
-
-        public RobotConnectionException(String message, Throwable cause) {
-            super(message, cause);
         }
     }
 }
