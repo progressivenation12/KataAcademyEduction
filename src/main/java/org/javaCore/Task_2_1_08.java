@@ -7,7 +7,8 @@ public class Task_2_1_08 {
         moveRobot(robot, 3, 6);
     }
 
-    public static class Robot {
+    // Метод должен быть public (изменен на private, т.к. в Task_3_2_06 нужен тоже класс Robot)
+    private static class Robot {
         private int x;
         private int y;
         Direction direction;
@@ -70,43 +71,43 @@ public class Task_2_1_08 {
     }
 
     public static void moveRobot(Robot robot, int toX, int toY) {
-    int currentGetX = robot.getX();
-    int currentGetY = robot.getY();
+        int currentGetX = robot.getX();
+        int currentGetY = robot.getY();
 
-    if (currentGetX > toX) {
-        while (robot.getDirection() != Direction.LEFT) {
-            robot.turnLeft();
+        if (currentGetX > toX) {
+            while (robot.getDirection() != Direction.LEFT) {
+                robot.turnLeft();
+            }
+            while (currentGetX != toX) {
+                robot.stepForward();
+                currentGetX--;
+            }
+        } else if (currentGetX < toX) {
+            while (robot.getDirection() != Direction.RIGHT) {
+                robot.turnRight();
+            }
+            while (currentGetX != toX) {
+                robot.stepForward();
+                currentGetX++;
+            }
         }
-        while (currentGetX != toX) {
-            robot.stepForward();
-            currentGetX--;
-        }
-    } else if (currentGetX < toX) {
-        while (robot.getDirection() != Direction.RIGHT) {
-            robot.turnRight();
-        }
-        while (currentGetX != toX) {
-            robot.stepForward();
-            currentGetX++;
-        }
-    }
 
-    if (currentGetY > toY) {
-        while (robot.getDirection() != Direction.DOWN) {
-            robot.turnLeft();
+        if (currentGetY > toY) {
+            while (robot.getDirection() != Direction.DOWN) {
+                robot.turnLeft();
+            }
+            while (currentGetY != toY) {
+                robot.stepForward();
+                currentGetY--;
+            }
+        } else if (currentGetY < toY) {
+            while (robot.getDirection() != Direction.UP) {
+                robot.turnRight();
+            }
+            while (currentGetY != toY) {
+                robot.stepForward();
+                currentGetY++;
+            }
         }
-        while (currentGetY != toY) {
-            robot.stepForward();
-            currentGetY--;
-        }
-    } else if (currentGetY < toY) {
-        while (robot.getDirection() != Direction.UP) {
-            robot.turnRight();
-        }
-        while (currentGetY != toY) {
-            robot.stepForward();
-            currentGetY++;
-        }
-    }
     }
 }
