@@ -26,7 +26,7 @@ public class Task_2_5_06 {
     }
 
     public static class AsciiCharSequence implements CharSequence {
-        byte[] array;
+        private final byte[] array;
 
         public AsciiCharSequence(byte[] array) {
             this.array = array.clone();

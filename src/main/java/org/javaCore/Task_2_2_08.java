@@ -22,12 +22,6 @@ public class Task_2_2_08 {
     }
 
     public static int weekdayCount(String[] days) {
-        int counterWeekday = 0;
-        for (String day : days) {
-            if (!isWeekend(day)) {
-                counterWeekday++;
-            }
-        }
-        return counterWeekday;
+        return days.length - weekendCount(days);
     }
 }
