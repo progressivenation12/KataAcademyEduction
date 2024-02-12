@@ -58,8 +58,7 @@ public class Task_2_1_08 {
                 case LEFT -> x--;
                 case RIGHT -> x++;
             }
-
-//            System.out.printf("The robot took %d step.\n", i);
+            System.out.printf("The robot took %d step.\n", 1);
         }
     }
 
