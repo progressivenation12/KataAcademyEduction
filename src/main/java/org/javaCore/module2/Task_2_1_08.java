@@ -7,8 +7,7 @@ public class Task_2_1_08 {
         moveRobot(robot, 3, 6);
     }
 
-    // Метод должен быть public (изменен на private, т.к. в Task_3_2_06 нужен тоже класс Robot)
-    private static class Robot {
+    public static class Robot {
         private int x;
         private int y;
         Direction direction;
