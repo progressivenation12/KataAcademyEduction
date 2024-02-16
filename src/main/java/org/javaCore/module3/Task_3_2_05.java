@@ -11,7 +11,7 @@ public class Task_3_2_05 {
 
     public static class Car implements AutoCloseable {
         @Override
-        public void close() throws Exception {
+        public void close() {
             System.out.println("Машина закрывается...");
         }
 

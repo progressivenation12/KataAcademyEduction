@@ -127,7 +127,7 @@ public class Task_3_2_07 {
                 i = 3;
             } catch (RobotConnectionException exception) {
                 if (i == 2) {
-                    throw new RobotConnectionException(exception.getMessage());
+                    throw exception;
                 }
             }
         }

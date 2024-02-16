@@ -66,6 +66,7 @@ public class Task_3_2_06 {
                 case LEFT -> x--;
                 case RIGHT -> x++;
             }
+            System.out.println("Robot 1 step");
         }
 
         @Override
@@ -120,44 +121,32 @@ public class Task_3_2_06 {
         UP, DOWN, LEFT, RIGHT
     }
 
-    public static void moveRobot(RobotConnectionManager robotConnectionManager, int toX, int toY) {
-        RobotConnection robotConnection = null;
-        boolean connectionEstablished = true;
+public static void moveRobot(RobotConnectionManager robotConnectionManager, int toX, int toY) {
+    RobotConnection robotConnection = null;
 
-        for (int i = 0; i < 3; i++) {
-            try {
-                robotConnection = robotConnectionManager.getConnection();
-                robotConnection.moveRobotTo(toX, toY);
-                return;
-            } catch (RobotConnectionException exception) {
-                if (i == 2) {
-                    if (robotConnection != null) {
-                        robotConnection.close();
-                    }
-                    connectionEstablished = false;
-                    throw new RobotConnectionException(exception.getMessage());
-                }
-            } catch (Exception exception) {
-                try {
-                    if (robotConnection != null) {
-                        robotConnection.close();
-                        connectionEstablished = false;
-                    }
-                } catch (Exception ignore) {
-
+    for (int i = 0; true; i++) {
+        try {
+            robotConnection = robotConnectionManager.getConnection();
+            robotConnection.moveRobotTo(toX, toY);
+            return;
+        } catch (RobotConnectionException exception) {
+            if (i == 2) {
+                if (robotConnection != null) {
+                    robotConnection.close();
                 }
                 throw exception;
-            } finally {
+            }
+        } finally {
+            if (robotConnection != null) {
                 try {
-                    if (robotConnection != null && connectionEstablished) {
-                        robotConnection.close();
-                    }
+                    robotConnection.close();
                 } catch (Exception ignore) {
 
                 }
             }
         }
     }
+}
 
     public interface RobotConnection extends AutoCloseable {
         void moveRobotTo(int x, int y);

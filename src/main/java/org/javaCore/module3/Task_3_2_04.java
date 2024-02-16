@@ -5,7 +5,8 @@ public class Task_3_2_04 {
         BankClient client1 = new BankClient("Good");
         BankClient client2 = new BankClient("Проблемы с законом");
         BankClient client3 = new BankClient("Проблемы с банковской историей");
-        BankWorker worker = new Worker();
+        BankWorker worker = new bankEmployee();
+
         System.out.println(getCreditForClient(worker, client1) + "\n"); //true
 
         System.out.println(getCreditForClient(worker, client2) + "\n"); //false
@@ -13,18 +14,16 @@ public class Task_3_2_04 {
         System.out.println(getCreditForClient(worker, client3) + "\n"); // "Проблемы с банковской историей" false
     }
 
-public static boolean getCreditForClient(BankWorker bankWorker, BankClient bankClient) {
-    try {
-        if (bankWorker.checkClientForCredit(bankClient)) {
-            return true;
+    public static boolean getCreditForClient(BankWorker bankWorker, BankClient bankClient) {
+        try {
+            return bankWorker.checkClientForCredit(bankClient);
+        } catch (BadCreditHistoryException badCreditHistoryException) {
+            System.out.println("Проблемы с банковской историей");
+        } catch (ProblemWithLawException e) {
+            System.out.print("");
         }
-    } catch (BadCreditHistoryException badCreditHistoryException) {
-        System.out.println("Проблемы с банковской историей");
-    } catch (ProblemWithLawException e) {
-        System.out.print("");
+        return false;
     }
-    return false;
-}
 }
 
 class BankClient {
@@ -36,15 +35,16 @@ class BankClient {
 
 }
 
-class Worker implements BankWorker {
+class bankEmployee implements BankWorker {
     @Override
     public boolean checkClientForCredit(BankClient client) throws BadCreditHistoryException, ProblemWithLawException {
         if (client.status.equals("Проблемы с банковской историей")) {
             throw new BadCreditHistoryException("Проблемы с банковской историей");
         } else if (client.status.equals("Проблемы с законом")) {
             throw new ProblemWithLawException("");
+        } else {
+            return true;
         }
-        return true;
     }
 }
 
