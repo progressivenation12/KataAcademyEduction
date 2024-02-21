@@ -12,6 +12,7 @@ public class Task_5_1_15 {
 
         System.out.println(integerDynamicArray.size());
         System.out.println(integerDynamicArray.get(0));
+
     }
 
     public static class DynamicArray<T> {
