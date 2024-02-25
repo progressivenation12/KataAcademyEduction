@@ -22,6 +22,4 @@ public class Task_6_1_11 {
             Function<? super T, ? extends U> ifFalse) {
         return x -> condition.test(x) ? ifTrue.apply(x) : ifFalse.apply(x);
     }
-
-
 }
