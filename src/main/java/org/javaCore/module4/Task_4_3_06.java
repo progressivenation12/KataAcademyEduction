@@ -19,8 +19,7 @@ public class Task_4_3_06 {
         int charRead;
 
         while ((charRead = inputStreamReader.read()) != -1) {
-            char currentChar = (char) charRead;
-            stringBuilder.append(currentChar);
+            stringBuilder.append((char) charRead);
         }
 
         return stringBuilder.toString();

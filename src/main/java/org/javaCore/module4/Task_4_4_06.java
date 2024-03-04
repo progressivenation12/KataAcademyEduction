@@ -32,17 +32,17 @@ public class Task_4_4_06 {
         }
     }
 
-public static Animal[] deserializeAnimalArray(byte[] data) {
+public static Animal[] deserializeAnimalArray(byte[] data) throws IllegalArgumentException {
     Animal[] animalArray;
-    try (ObjectInputStream objectInputStream = new ObjectInputStream(new ByteArrayInputStream(data))) {
-        int animalArraySize = objectInputStream.readInt();
-        animalArray = new Animal[animalArraySize];
 
-        for (int i = 0; i < animalArraySize; i++) {
+    try (ObjectInputStream objectInputStream = new ObjectInputStream(new ByteArrayInputStream(data))) {
+        animalArray = new Animal[objectInputStream.readInt()];
+
+        for (int i = 0; i < animalArray.length; i++) {
             animalArray[i] = (Animal) objectInputStream.readObject();
         }
     } catch (Exception exception) {
-        throw new IllegalArgumentException();
+        throw new IllegalArgumentException(exception);
     }
 
     return animalArray;

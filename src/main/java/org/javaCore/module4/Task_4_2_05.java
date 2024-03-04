@@ -4,7 +4,7 @@ import java.io.*;
 
 public class Task_4_2_05 {
     public static void main(String[] args) throws IOException {
-        byte[] data = new byte[]{1, 2, 4, 10};
+        byte[] data = new byte[]{3, 18, 1, -53};
         InputStream inputStream = new ByteArrayInputStream(data);
 
         System.out.println(sumOfStream(inputStream));
@@ -12,10 +12,10 @@ public class Task_4_2_05 {
 
     public static int sumOfStream(InputStream inputStream) throws IOException {
         int sumRead = 0;
+        int currentRead;
 
-        while (inputStream.available() > 0) {
-            byte currentRead = (byte) inputStream.read();
-            sumRead += currentRead;
+        while ((currentRead = inputStream.read()) != -1) {
+            sumRead += (byte) currentRead;
         }
         return sumRead;
     }

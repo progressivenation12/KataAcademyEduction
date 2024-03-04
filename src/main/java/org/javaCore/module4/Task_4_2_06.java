@@ -23,12 +23,13 @@ public class Task_4_2_06 {
     }
 
     public static void print(InputStream inputStream, OutputStream outputStream) throws IOException {
-        while (inputStream.available() > 0) {
-            byte currentByte = (byte) inputStream.read();
-            if (currentByte % 2 == 0) {
-                outputStream.write(currentByte);
-                outputStream.flush();
+        int currentRead;
+
+        while ((currentRead = inputStream.read()) != -1) {
+            if ((byte) currentRead % 2 == 0) {
+                outputStream.write((byte) currentRead);
             }
         }
+        outputStream.flush();
     }
 }

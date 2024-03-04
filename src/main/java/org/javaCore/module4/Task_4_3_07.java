@@ -16,8 +16,7 @@ public class Task_4_3_07 {
 
         while (scanner.hasNext()) {
             if (scanner.hasNextDouble()) {
-                double currentNum = scanner.nextDouble();
-                sum += currentNum;
+                sum += scanner.nextDouble();
             } else {
                 scanner.next();
             }
