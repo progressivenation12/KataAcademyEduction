@@ -1,14 +1,11 @@
 package org.javaCore.module5;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Task_5_2_15 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        List<Integer> numbers = new ArrayList<>();
+        Deque<Integer> numbers = new LinkedList<>();
         int checkIndex = 0;
 
         while (scanner.hasNextInt()) {
@@ -19,10 +16,8 @@ public class Task_5_2_15 {
             }
         }
 
-        Collections.reverse(numbers);
+        Iterator<Integer> descendingIterator = numbers.descendingIterator();
 
-        numbers.forEach(i -> System.out.print(i + " "));
-
-        scanner.close();
+        descendingIterator.forEachRemaining(i -> System.out.print(i + " "));
     }
 }

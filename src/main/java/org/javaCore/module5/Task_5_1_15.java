@@ -16,8 +16,7 @@ public class Task_5_1_15 {
     }
 
     public static class DynamicArray<T> {
-        private static final int DEFAULT_SIZE = 10;
-        private T[] array = (T[]) new Object[DEFAULT_SIZE];
+        private Object[] array = new Object[10];
         private int arraySize = 0;
 
         public DynamicArray() {
@@ -32,16 +31,7 @@ public class Task_5_1_15 {
         }
 
         public void remove(int index) {
-            if (index < 0 || index >= arraySize) {
-                throw new ArrayIndexOutOfBoundsException();
-            }
-
-            T[] tempArray = array;
-            array = (T[]) new Object[tempArray.length - 1];
-
-            System.arraycopy(tempArray, 0, array, 0, index);
-            System.arraycopy(tempArray, index + 1, array, index, tempArray.length - index - 1);
-
+            System.arraycopy(array, index + 1, array, index, array.length - index - 1);
             arraySize--;
         }
 
@@ -49,11 +39,12 @@ public class Task_5_1_15 {
             return array.length;
         }
 
+        @SuppressWarnings("unchecked")
         public T get(int index) {
             if (index < 0 || index >= arraySize) {
                 throw new ArrayIndexOutOfBoundsException();
             }
-            return array[index];
+            return (T) array[index];
         }
     }
 }
