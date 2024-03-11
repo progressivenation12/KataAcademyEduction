@@ -32,29 +32,27 @@ public class Task_4_4_06 {
         }
     }
 
-public static Animal[] deserializeAnimalArray(byte[] data) throws IllegalArgumentException {
-    Animal[] animalArray;
-
+private static Animal[] deserializeAnimalArray(byte[] data) throws IllegalArgumentException {
     try (ObjectInputStream objectInputStream = new ObjectInputStream(new ByteArrayInputStream(data))) {
-        animalArray = new Animal[objectInputStream.readInt()];
+        Animal[] animalArray = new Animal[objectInputStream.readInt()];
 
         for (int i = 0; i < animalArray.length; i++) {
             animalArray[i] = (Animal) objectInputStream.readObject();
         }
+
+        return animalArray;
     } catch (Exception exception) {
         throw new IllegalArgumentException(exception);
     }
-
-    return animalArray;
 }
 
     private record Animal(String name) implements Serializable {
         @Override
-        public boolean equals(Object obj) {
-            if (obj instanceof Animal) {
-                return Objects.equals(name, ((Animal) obj).name);
+            public boolean equals(Object obj) {
+                if (obj instanceof Animal) {
+                    return Objects.equals(name, ((Animal) obj).name);
+                }
+                return false;
             }
-            return false;
         }
-    }
 }
