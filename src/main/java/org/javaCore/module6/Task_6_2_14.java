@@ -33,7 +33,7 @@ public class Task_6_2_14 {
         // где по получателю можно получить список сообщений, которые были ему отправлены
         Map<String, List<String>> mailBox = mailService.getMailBox();
 
-        assert mailBox.get("H.P. Lovecraft").equals(Arrays.asList("This \"The Shadow over Innsmouth\" story is real masterpiece, Howard!")) : "wrong mailService mailbox content (1)";
+        assert mailBox.get("H.P. Lovecraft").equals(List.of("This \"The Shadow over Innsmouth\" story is real masterpiece, Howard!")) : "wrong mailService mailbox content (1)";
         assert mailBox.get("Christopher Nolan").equals(Arrays.asList("Брат, почему все так хвалят только тебя, когда практически все сценарии написал я. Так не честно!", "Я так и не понял Интерстеллар.")) : "wrong mailService mailbox content (2)";
         assert mailBox.get(randomTo).equals(Collections.<String>emptyList()) : "wrong mailService mailbox content (3)";
 
@@ -121,7 +121,7 @@ public class Task_6_2_14 {
     }
 
     public static class MailService<T> implements Consumer<Message<T>> {
-        private final Map<String, List<T>> mailBox = new HashMap<String, List<T>>() {
+        private final Map<String, List<T>> mailBox = new HashMap<>() {
             @Override
             public List<T> get(Object key) {
                 return getOrDefault(key, Collections.emptyList());
@@ -129,16 +129,9 @@ public class Task_6_2_14 {
         };
 
         @Override
-        public void accept(Message<T> t) {
-            List<T> list;
-            if (!mailBox.containsKey(t.getTo())) {
-                list = new ArrayList<>();
-            } else {
-                list = mailBox.get(t.getTo());
-            }
-            list.add(t.getContent());
-            mailBox.put(t.getTo(), list);
-        }
+    public void accept(Message<T> t) {
+        mailBox.computeIfAbsent(t.getTo(), element -> new LinkedList<>()).add(t.getContent());
+    }
 
         public Map<String, List<T>> getMailBox() {
             return mailBox;
